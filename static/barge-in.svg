@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="528" viewBox="0 0 1240 528" role="img" aria-labelledby="title desc">
+  <title id="title">Barge-in: the two queues between the agent and your ears</title>
+  <desc id="desc">Deepgram sends agent audio into a queue in the Python process (Outbox in web/audio.py), which forwards it over a WebSocket into a queue in the browser (PlaybackProcessor in worklets.js), which feeds the speaker. Both queues hold audio the server already sent, so clearing only one leaves the bug in place. player.clear() drops the Python-side queue first, then tells the browser worklet to flush; reversing that order lets the Python pump refill the browser queue.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3F4B5B"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B7791F"/>
+    </marker>
+    <style>
+      .h1   { font: 700 20px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #101820; }
+      .h2   { font: 400 14px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #4A5568; }
+      .grp  { font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #B7791F; letter-spacing: .6px; }
+      .box  { font: 700 15px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #101820; }
+      .sub  { font: 400 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #4A5568; }
+      .mono { font: 400 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #4A5568; }
+      .monb { font: 700 13px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #101820; }
+      .edge { font: 400 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #4A5568; }
+      .num  { font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #FFFFFF; }
+      .step { font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #101820; }
+      .warn { font: 400 12.5px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #2D3748; }
+      .warnh{ font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #B3223A; letter-spacing: .6px; }
+    </style>
+  </defs>
+
+  <rect width="1240" height="528" fill="#FFFFFF"/>
+
+  <text class="h1" x="24" y="32">Barge-in: two queues sit between the agent and your ears</text>
+  <text class="h2" x="24" y="54">Clearing one is not enough. The other refills it.</text>
+
+  <g transform="translate(0,-24)">
+  <!-- ============ bracket over the two queues ============ -->
+  <path d="M 276 158 L 276 144 L 1006 144 L 1006 158" fill="none" stroke="#B7791F" stroke-width="1.5"/>
+  <text class="grp" x="641" y="132" text-anchor="middle">AUDIO THE SERVER ALREADY SENT — YOURS TO THROW AWAY</text>
+
+  <!-- ============ Deepgram ============ -->
+  <rect x="24" y="180" width="190" height="110" rx="10" fill="#F3FBF8" stroke="#12876B" stroke-width="1.5"/>
+  <text class="box" x="44" y="216">Deepgram</text>
+  <text class="sub" x="44" y="240">Stops generating and</text>
+  <text class="sub" x="44" y="258">stops sending, then tells you</text>
+  <text class="mono" x="44" y="280">UserStartedSpeaking</text>
+
+  <line x1="214" y1="235" x2="276" y2="235" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ Python-side queue ============ -->
+  <rect x="276" y="180" width="310" height="110" rx="10" fill="#FFFCF5" stroke="#B7791F" stroke-width="3"/>
+  <text class="box" x="296" y="216">Queue in Python</text>
+  <text class="sub" x="296" y="240">Seconds of TTS, buffered and</text>
+  <text class="sub" x="296" y="258">pumped toward the browser</text>
+  <text class="mono" x="296" y="280">Outbox — web/audio.py</text>
+
+  <line x1="586" y1="235" x2="676" y2="235" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text class="edge" x="631" y="224" text-anchor="middle">WebSocket</text>
+
+  <!-- ============ Browser-side queue ============ -->
+  <rect x="676" y="180" width="330" height="110" rx="10" fill="#FFFCF5" stroke="#B7791F" stroke-width="3"/>
+  <text class="box" x="696" y="216">Queue in the browser</text>
+  <text class="sub" x="696" y="240">The buffer the audio hardware</text>
+  <text class="sub" x="696" y="258">is already draining</text>
+  <text class="mono" x="696" y="280">PlaybackProcessor — worklets.js</text>
+
+  <line x1="1006" y1="235" x2="1066" y2="235" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ Speaker ============ -->
+  <rect x="1066" y="180" width="150" height="110" rx="10" fill="#F7F9FB" stroke="#8792A2" stroke-width="1.5"/>
+  <text class="box" x="1086" y="228">Speaker</text>
+  <text class="sub" x="1086" y="252">Where the agent</text>
+  <text class="sub" x="1086" y="270">talks over you</text>
+
+  <!-- ============ player.clear() ============ -->
+  <line x1="431" y1="322" x2="431" y2="292" stroke="#B7791F" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#arrowAmber)"/>
+  <line x1="841" y1="322" x2="841" y2="292" stroke="#B7791F" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#arrowAmber)"/>
+
+  <circle cx="431" cy="336" r="12" fill="#B7791F"/>
+  <text class="num" x="431" y="341" text-anchor="middle">1</text>
+  <circle cx="841" cy="336" r="12" fill="#B7791F"/>
+  <text class="num" x="841" y="341" text-anchor="middle">2</text>
+
+  <text class="step" x="431" y="374" text-anchor="middle">Drop the Python side first</text>
+  <text class="mono" x="431" y="393" text-anchor="middle">Outbox.drop_audio()</text>
+  <text class="sub" x="431" y="412" text-anchor="middle">Audio frames only — control messages survive</text>
+
+  <text class="step" x="841" y="374" text-anchor="middle">Then tell the browser to flush</text>
+  <text class="mono" x="841" y="393" text-anchor="middle">clear message to the worklet</text>
+  <text class="sub" x="841" y="412" text-anchor="middle">this.queue.length = 0 in PlaybackProcessor</text>
+
+  <text class="monb" x="24" y="341">player.clear()</text>
+  <text class="sub" x="24" y="360">does both,</text>
+  <text class="sub" x="24" y="378">in this order</text>
+
+  <!-- ============ the failure mode ============ -->
+  <rect x="24" y="442" width="1192" height="86" rx="8" fill="#FEF6F7" stroke="#DD344C" stroke-width="1.5"/>
+  <text class="warnh" x="44" y="468">REVERSE THE ORDER AND IT STILL LOOKS ALMOST RIGHT</text>
+  <text class="warn" x="44" y="492">Flush the browser while seconds of TTS still sit in the Python queue and the pump simply refills it. The agent talks over you a moment</text>
+  <text class="warn" x="44" y="512">later instead of immediately — worse, because now it looks like it nearly works.</text>
+  </g>
+</svg>

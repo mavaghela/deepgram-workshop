@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="472" viewBox="0 0 1240 472" role="img" aria-labelledby="title desc">
+  <title id="title">A voice agent is three models in a row, on one connection</title>
+  <desc id="desc">Your browser captures your voice and sends it over a single connection to the Deepgram Voice Agent API, which runs three models in a row: speech-to-text with flux-general-en, an LLM that thinks using your prompt and functions, and text-to-speech that speaks the reply. The agent's voice comes back to the same browser tab. Each model maps to one field of the Settings JSON document: listen, think, and speak.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3F4B5B"/>
+    </marker>
+    <style>
+      .h1   { font: 700 20px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #101820; }
+      .h2   { font: 400 14px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #4A5568; }
+      .grp  { font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #3F4B5B; letter-spacing: .6px; }
+      .box  { font: 700 15px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #101820; }
+      .sub  { font: 400 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #4A5568; }
+      .mono { font: 400 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #4A5568; }
+      .key  { font: 700 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #B7791F; }
+      .edge { font: 400 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #4A5568; }
+      .noteh{ font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #B7791F; letter-spacing: .6px; }
+      .note { font: 400 12.5px "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #2D3748; }
+    </style>
+  </defs>
+
+  <rect width="1240" height="472" fill="#FFFFFF"/>
+
+  <text class="h1" x="24" y="32">A voice agent is three models in a row</text>
+  <text class="h2" x="24" y="54">Deepgram runs all three and manages the connection between them. Your job is configuration.</text>
+
+  <!-- ============ your browser ============ -->
+  <rect x="24" y="160" width="190" height="154" rx="10" fill="#F7F9FB" stroke="#8792A2" stroke-width="1.5"/>
+  <text class="box" x="44" y="196">Your browser</text>
+  <text class="sub" x="44" y="222">Microphone and speaker</text>
+  <text class="sub" x="44" y="240">Nothing installed</text>
+  <text class="mono" x="44" y="268">playground.deepgram.com</text>
+
+  <line x1="214" y1="237" x2="276" y2="237" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ Deepgram ============ -->
+  <rect x="276" y="120" width="658" height="214" rx="10" fill="#F3FBF8" stroke="#12876B" stroke-width="1.5"/>
+  <text class="grp" x="294" y="146">DEEPGRAM VOICE AGENT API — ONE CONNECTION</text>
+
+  <rect x="294" y="160" width="190" height="154" rx="8" fill="#FFFFFF" stroke="#12876B" stroke-width="1.5"/>
+  <text class="box" x="312" y="196">Speech to Text</text>
+  <text class="sub" x="312" y="222">Hears you and decides</text>
+  <text class="sub" x="312" y="240">when your turn ends</text>
+  <text class="mono" x="312" y="268">flux-general-en</text>
+  <text class="key"  x="312" y="296">"listen"</text>
+
+  <line x1="484" y1="237" x2="510" y2="237" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="510" y="160" width="190" height="154" rx="8" fill="#FFFFFF" stroke="#12876B" stroke-width="1.5"/>
+  <text class="box" x="528" y="196">LLM</text>
+  <text class="sub" x="528" y="222">Thinks, using your</text>
+  <text class="sub" x="528" y="240">prompt and functions</text>
+  <text class="mono" x="528" y="268">gpt-4o-mini</text>
+  <text class="key"  x="528" y="296">"think"</text>
+
+  <line x1="700" y1="237" x2="726" y2="237" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="726" y="160" width="190" height="154" rx="8" fill="#FFFFFF" stroke="#12876B" stroke-width="1.5"/>
+  <text class="box" x="744" y="196">Text to Speech</text>
+  <text class="sub" x="744" y="222">Speaks the reply as</text>
+  <text class="sub" x="744" y="240">the tokens arrive</text>
+  <text class="mono" x="744" y="268">aura-2-thalia-en</text>
+  <text class="key"  x="744" y="296">"speak"</text>
+
+  <line x1="934" y1="237" x2="996" y2="237" stroke="#3F4B5B" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ back to you ============ -->
+  <rect x="996" y="160" width="220" height="154" rx="10" fill="#F7F9FB" stroke="#8792A2" stroke-width="1.5"/>
+  <text class="box" x="1016" y="196">The agent's voice</text>
+  <text class="sub" x="1016" y="222">Back in the same tab,</text>
+  <text class="sub" x="1016" y="240">while it is still thinking</text>
+  <text class="mono" x="1016" y="268">no AWS account needed</text>
+
+  <!-- ============ the one idea ============ -->
+  <rect x="24" y="372" width="1192" height="76" rx="8" fill="#FFFCF5" stroke="#B7791F" stroke-width="1.5"/>
+  <text class="noteh" x="44" y="398">THE SETTINGS PANEL IS A FORM OVER A JSON DOCUMENT</text>
+  <text class="note" x="44" y="424">Transcription model writes <tspan class="key">"listen"</tspan>. LLM and Agent prompt write <tspan class="key">"think"</tspan>. Voice writes <tspan class="key">"speak"</tspan>. The developers next to you are typing that same document by hand.</text>
+</svg>

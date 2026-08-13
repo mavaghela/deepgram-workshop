@@ -4,7 +4,33 @@ defaultLocaleCode: en-US
 localeCodes:
   - en-US
 
-params:
-  hello: world
-  foo:
-    - bar
+additionalLinks:
+  - title: Deepgram Voice Agent documentation
+    link: https://developers.deepgram.com/docs/voice-agent
+  - title: Deepgram Flux documentation
+    link: https://developers.deepgram.com/docs/flux
+  - title: Workshop source code
+    link: https://github.com/deepgram-devs/deepgram-workshop-py
+
+# The workshop runs on the attendee's own machine and provisions no AWS
+# resources. An AWS account is used in one place only: Step 6 moves the
+# agent's LLM onto Amazon Bedrock. Either Workshop Studio provisions the
+# account or the attendee brings their own.
+awsAccountConfig:
+  accountSources:
+    - workshop_studio
+    - customer_provided
+  participantRole:
+    managedPolicies:
+      - "arn:aws:iam::aws:policy/AmazonBedrockLimitedAccess"
+  regionConfiguration:
+    minAccessibleRegions: 1
+    maxAccessibleRegions: 1
+    accessibleRegions:
+      recommended:
+        - us-east-2
+        - us-west-2
+    deployableRegions:
+      recommended:
+        - us-east-2
+        - us-west-2

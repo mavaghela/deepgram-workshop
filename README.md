@@ -1,59 +1,58 @@
-# Aws-workshop-template
+# Deepgram Voice Agent Workshop — AWS Workshop Studio content
+
+The AWS Workshop Studio edition of the Deepgram Voice Agent Workshop. This repository holds **content only**.
+
+**The code lives in [deepgram-devs/deepgram-workshop-py](https://github.com/deepgram-devs/deepgram-workshop-py).** Attendees clone that repository and work the `TODO` blocks in `steps/NN-slug/main.py`; the pages here are the instructions. Every code link in `content/` points at that repository, so a change to a step's file layout there needs a matching change here.
+
+## What differs from the source repository
+
+| | Source repo | This edition |
+|---|---|---|
+| Step 6b (Amazon Bedrock) | Optional detour, skipped in the run of show | Merged into Step 6 as Part 2, required |
+| Navigation | Flat `steps/` folders | Three modules, plus an Easy Mode track |
+| Check-yourself questions | Question only; answers in `FACILITATOR.md` | Question with the answer in an expandable block |
+| Facilitator guide | `FACILITATOR.md` | `FACILITATOR_GUIDE.md`, in Workshop Studio's section format |
+
+Everything else is the source prose, converted to Workshop Studio directives.
 
 ## Repo structure
 
-```bash
+```
 .
-├── contentspec.yaml                  <-- Specifies the version of the content
-├── README.md                         <-- This instructions file
-├── static                            <-- Directory for static assets to be hosted alongside the workshop (ie. images, scripts, documents, etc) 
-└── content                           <-- Directory for workshop content markdown
-    └── index.en.md                   <-- At the root of each directory, there must be at least one markdown file
-    └── introduction                  <-- Directory for workshop content markdown
-        └── index.en.md               <-- Markdown file that would be render 
+├── contentspec.yaml       Workshop Studio configuration and AWS account requirements
+├── FACILITATOR_GUIDE.md   Parsed at build time and rendered in Workshop Studio
+├── static/                Assets referenced from content as /static/...
+└── content/
+    ├── index.en.md                  Landing page
+    ├── introduction/                What you'll build, prerequisites, voice agent concepts
+    ├── build-the-agent/             Module 1 — Steps 1 to 5
+    ├── make-it-yours/               Module 2 — Steps 6 and 7
+    ├── optimize/                    Module 3 — Step 8
+    ├── easy-mode/                   Parallel no-install track on the Deepgram Playground
+    ├── summary/                     The finished agent and where to go next
+    └── cleanup/                     Teardown
 ```
 
-## What's Included
+Every folder needs at least one `index.en.md`. The `title` in each page's front matter becomes its left-nav label, and `weight` sets the order — chapters are multiples of 10, pages inside them count up from there.
 
-This project contains the following folders:
-* `static`: This folder contains static assets to be hosted alongside the workshop (ie. images, scripts, documents, etc) 
-* `content`: This is the core workshop folder. This is generated as HTML and hosted for presentation for customers.
+## Local preview
 
-## How to create content
+Download the preview binary for your platform, make it executable, and point it at this folder:
 
-Under the `content` folder, Each folder requires at least one `index.<lang>.md` file. The file will have a header
-
-```aidl
-+++
-title = "AWS Workshop Template"
-weight = 0
-+++
+```bash
+curl -o preview_build https://artifacts.us-east-1.prod.workshops.aws/v2/cli/osx/preview_build
+chmod +x preview_build
+./preview_build -input /path/to/deepgram-workshop
 ```
 
-The title will be the title on navigation panel on the left. The weight determines the order the page appears in the navigation panel.
+The preview serves at <http://localhost:8080> and reloads when files change. Watch the terminal — build failures and directive warnings only appear there. Use `-port 8081` if 8080 is taken.
 
-## Local Development
+On macOS the binary is unsigned: Control-click it in Finder and choose **Open** once before running it from the terminal.
 
-OS X
-Download the appropriate local content preview application for your operating system:
+## Authoring notes
 
-https://artifacts.us-east-1.prod.workshops.aws/v2/cli/osx/preview_build 
-
-Open Terminal and change to the location of the preview_build app with cd YourDirectory
-Make the binary executable by running chmod +x preview_build. Reference 
-In the Finder on your Mac, locate the downloaded app
-Don’t use Launchpad to do this. Launchpad doesn’t allow you to access the shortcut menu.
-Control-click the app icon, then choose Open from the shortcut menu
-Click Open
-Launch the preview application from your CLI by providing the relative or absolute path, such as running ~/Downloads/preview_build in Terminal
-
-The preview will now be available at http://localhost:8080
-http://localhost:8080 
-
-Notes:
-Make changes to your content and view them in your local browser. Your browser will refresh automatically when file changes are detected in the content repository.
-Watch the terminal window where you're running the preview utility to see information about build failures, warnings, and other tips.
-
-Tips:
-You can specify a custom port with the -port flag, such as ./preview_build -port 8081
-You can run the preview server from a different location by providing a relative or full path to your content repository such as ./preview_build -input Path/To/MyContentRepo or .\preview_build.exe -input C:\Users\YourAlias\Desktop\MyContentRepo
+- **Directives, not fenced code blocks.** Code uses `:::code{language=... showCopyAction=true}`, callouts use `::alert`, collapsibles use `:::expand`, and tabs use `::::tabs` wrapping `:::tab`.
+- **Nested containers need more colons than their children.** A `::::tabs` holding `:::tab` holding `::code` is the pattern. Get the count wrong and the page renders literal colons.
+- **A line beginning with `:` is parsed as a directive.** Reflow or escape prose and terminal output that starts that way.
+- **Images must live in `static/`.** Workshop Studio blocks images loaded from outside the workshop.
+- **No mermaid renderer.** Diagrams are either SVG in `static/` or plain text inside a code block.
