@@ -3,9 +3,9 @@ title: "Introduction"
 weight: 10
 ---
 
-Build a real-time voice agent in Python, one runnable step at a time. You speak, it listens on Flux, thinks with an LLM, answers in a natural voice, stops when you interrupt it, and calls your code when it needs something it can't know.
+Build a real-time voice agent in Python, one runnable step at a time. You speak, it listens on Flux, thinks with an LLM, answers in a natural voice, stops when you interrupt it, and calls your code when it needs information from your domain.
 
-Every step is a complete, working program that opens a browser tab and talks to you. The agent is entirely Python — the browser is only the microphone and the speaker.
+Every step is a complete, working program that opens a browser tab and talks to you. The agent is entirely Python, the browser is only the microphone and the speaker.
 
 Start at Step 1 or drop in at Step 5; each folder already contains everything the previous steps built.
 

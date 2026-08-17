@@ -15,7 +15,7 @@ Every step is a complete, working program. The agent is entirely Python. The bro
 
 **Built for developers who want a voice agent working today, not a survey of the field.**
 
-| | |
+| Info | Description |
 |---|---|
 | **Primary audience** | Application developers, solutions architects, and technical leads evaluating real-time voice for a product |
 | **Secondary audience** | Sales engineers and developer advocates who need a demo they can explain line by line |

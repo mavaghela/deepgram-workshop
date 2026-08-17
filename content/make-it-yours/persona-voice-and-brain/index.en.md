@@ -29,7 +29,7 @@ Everything works: it hears you, answers you, and pauses when you talk over it. I
 
 This part has the least code in the workshop and the most to play with.
 
-## The mental model
+## How it works
 
 Three settings define the agent's character, and they're independent of each other:
 
@@ -125,7 +125,7 @@ It prints which brain it's using before it opens the browser:
 
 That's the agent Part 1 started from, and it will keep working exactly like that until you put AWS credentials in `.env`. `main.py` here falls back to OpenAI when there are none, so it runs regardless — if your model access hasn't come through yet, keep going, and Step 7 continues either way.
 
-## The mental model
+## How it works
 
 Every step so far has needed one credential. `.env` has held a single Deepgram key, and that key has paid for speech-to-text, the LLM, and text-to-speech alike. Part 1 let you swap `gpt-4o-mini` for `gpt-4o` without so much as an OpenAI account.
 
