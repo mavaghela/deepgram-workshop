@@ -65,6 +65,8 @@ Needs only Docker. Install the [Dev Containers extension](https://marketplace.vi
 The container builds, `uv sync` runs, and `post-create.sh` seeds `.env` from `.env.example`. Paste your key into `.env` and start at Step 1.
 
 Port 8000 is forwarded, so the page opens at `http://127.0.0.1:8000` on your host — a secure context, so the microphone works.
+
+[`.devcontainer/README.md`](https://github.com/deepgram-devs/deepgram-workshop-py/blob/main/.devcontainer/README.md) has the details.
 :::
 
 ::::

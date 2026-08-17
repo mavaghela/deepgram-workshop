@@ -81,9 +81,9 @@ Add credit to the account, or share a machine with a neighbor for the rest of th
 :::
 
 :::expand{header="It cuts you off mid-sentence"}
-Working as designed, and Lab 3 is about exactly that trade-off.
+Working as designed, and [Lab 3](/easy-mode/lab-3) is about exactly that trade-off.
 :::
 
 :::expand{header="It reads punctuation out loud"}
-Your prompt hasn't told it that it's speaking. Back to Lab 4.
+Your prompt hasn't told it that it's speaking. Back to [Lab 4](/easy-mode/lab-4).
 :::

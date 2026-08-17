@@ -134,7 +134,7 @@ Times assume a 3-hour slot with one break. The **⏸** rows are the sync points 
 | 1:40–1:50 | 10 min | **Break** | Use it to unstick stragglers |
 | 1:50–2:15 | 25 min | **Step 5: Barge-in** | Interruption. **⏸** Everyone experiences the bug *before* fixing it |
 | 2:15–2:50 | 35 min | **Step 6: Persona, voice, and your own brain** | Part 1 persona and voice (~20 min), Part 2 Bedrock (~15 min). **⏸** Go around the room and demo a few personas before starting Part 2 |
-| 2:50–3:20 | 30 min | **Step 7: Function calling** | Tools. **⏸** Sketch a function for their own use case first |
+| 2:50–3:20 | 30 min | **Step 7: Function calling** | Phone banking agent. **⏸** Sketch a function for their own use case first |
 | 3:20–3:35 | 15 min | **Step 8: Turn detection and latency** | Pace-recovery step. Stragglers catch up here, and it sheds time cleanly |
 | 3:35–3:45 | 10 min | **Wrap-up & Next Steps** | Summary page, Q&A. Point at Discord and the docs |
 
@@ -143,7 +143,7 @@ Times assume a 3-hour slot with one break. The **⏸** rows are the sync points 
 - Steps 1 to 5 are the core. Finish those and the room has a working voice agent whatever else happens.
 - **Step 6 is now two parts and it will run long the first time you deliver it.** Part 1 is fun and people linger on personas; Part 2 is where credentials go wrong. Budget the full 35 minutes and be willing to call time on personas.
 - **If you're running long.** Cut Step 8 and Step 7's exercises. Both work fine as take-home, and Step 8 is deliberately last so it can go. Never cut Step 5; it's the step people remember.
-- **If you're running short.** Step 8's "Going further" (`eager_eot_threshold`) and Step 7's second function absorb time well.
+- **If you're running short.** Step 8's "Going further" (`eager_eot_threshold`) and Step 7's `transfer_funds` exercise absorb time well. For a room that is genuinely ahead, the optional Step 7b (healthcare) is the richer fifteen minutes — it needs no extra credential and nothing after it depends on it, so it also makes the best take-home.
 - With 20+ participants, keep per-step Q&A short and use your floating helpers.
 
 ### 90-Minute Format
@@ -289,6 +289,8 @@ Anyone arriving from the Pipecat edition will also reach for `AWS_BEARER_TOKEN_B
 
 - **Issue:** The function never gets called.
 - **Solution:** Nine times out of ten it's the description. It has to say *when* to use the function, not just what it does.
+- **Issue:** The agent apologizes vaguely, but the console clearly shows the call going out.
+- **Solution:** The name in `FUNCTIONS` doesn't match the key in `FUNCTION_HANDLERS`. Those two halves only meet through that string, so a rename in one place and not the other produces exactly this.
 
 ### Service Limits & Quotas
 
@@ -364,6 +366,8 @@ Each page poses these with the answer in an expandable block, so attendees can s
 **Step 6, Part 2.** Deepgram brokers OpenAI, so a model name is the whole configuration. It doesn't broker Bedrock: it makes the call *as you*, which needs credentials to make it with (`provider.credentials`) and an address to make it to (`think.endpoint`).
 
 **Step 7.** Setting `endpoint` moves execution to Deepgram; omitting it keeps the function client-side.
+
+**Step 7b (optional).** The prompt is a request and the payload is a guarantee. Prose asking the model not to repeat a phone number can be talked around; a payload that never carried one cannot. Filter at the boundary and there is nothing to leak.
 
 **Step 8.** Raise `eot_threshold`. It demands more confidence before Flux calls the turn over.
 

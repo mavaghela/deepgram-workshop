@@ -3,7 +3,7 @@ title: "Deepgram Voice Agent Workshop"
 weight: 0
 ---
 
-Build a real-time voice agent in Python, one runnable step at a time. You speak, it listens on Flux, thinks with an LLM, answers in a natural voice, stops when you interrupt it, and calls your code when it needs something it can't know.
+Build a real-time voice agent in Python, one runnable step at a time. You speak, it listens on Flux, thinks with an LLM, answers in a natural voice, stops when you interrupt it, and calls your code when it needs something it can't know. By the end it's a phone banking agent that answers from your data instead of its own imagination.
 
 Every step is a complete, working program. The agent is entirely Python. The browser is only the microphone and the speaker. In Step 6 the agent's brain moves onto Amazon Bedrock in your own AWS account.
 
@@ -39,6 +39,7 @@ Nothing is deployed to a server, so "deployment" here means getting to a working
 | **First verified run** | ~15 min | Step 1 checks your key, browser, microphone, and output |
 | **Module 1 (Steps 1 to 5)** | ~90 min | Ends with a working voice agent you can interrupt mid-sentence |
 | **Full workshop (Steps 1 to 8)** | ~3 hours | Adds persona, Amazon Bedrock, function calling, and latency tuning |
+| **Optional Step 7b** | +15 min | A second vertical in healthcare. Off the chain — nothing after it depends on it |
 
 **One dependency to install.** uv fetches Python 3.13 and every package itself, so you don't need Python already. One virtual environment serves every step; you run `uv sync` once.
 

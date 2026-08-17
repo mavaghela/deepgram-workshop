@@ -5,7 +5,7 @@ weight: 55
 
 **Goal:** Understand how an agent reaches outside its own head.
 
-Ask your agent what time it is. It will make something up with total confidence, because a language model has no clock. Function calling closes that gap and every gap like it: your database, your API, the user's order history, today's date.
+Tell your agent you're calling about your bank account and ask for your balance. It will give you a number with total confidence, because a language model has no database. Function calling closes that gap and every gap like it: your database, your API, the user's order history, today's date.
 
 The flow has four hops:
 
@@ -29,7 +29,7 @@ Then toggle **End Conversation (Example)** on, start again, and say goodbye. Dif
 
 ## The two things worth remembering
 
-**The description is a prompt.** It is the only thing the model reads when deciding whether to call your function. Write it to say *when* to use the function, not just what it does. "Get the current time" is a weak description; "Get the current date and time in a given IANA timezone. Use this whenever the user asks what time it is or what today's date is" is one the model can act on. Nine times out of ten, a function that never fires has a description problem, not a wiring problem.
+**The description is a prompt.** It is the only thing the model reads when deciding whether to call your function. Write it to say *when* to use the function, not just what it does. "Get the balance" is a weak description; "Get the current balance for a customer account by its last four digits. Use this whenever the customer asks how much money they have" is one the model can act on. Nine times out of ten, a function that never fires has a description problem, not a wiring problem.
 
 **Where the function runs is one field.** In the JSON, a function definition can carry an `endpoint`:
 

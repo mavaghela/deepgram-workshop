@@ -25,10 +25,12 @@ Start at Step 1 or drop in at Step 5; each folder already contains everything th
 |---|---|---|---|
 | [Introduction](/introduction) | 0 | The parts of a voice agent | 10 min |
 | [Build the agent](/build-the-agent) | 1 to 5 | Setup, the WebSocket handshake, playback, microphone input, barge-in | ~90 min |
-| [Make it yours](/make-it-yours) | 6 and 7 | Prompt, persona, voice, Amazon Bedrock, function calling | ~55 min |
+| [Make it yours](/make-it-yours) | 6 and 7, plus optional 7b | Prompt, persona, voice, Amazon Bedrock, and a phone banking agent that answers from your data | ~55 min |
 | [Optimize](/optimize) | 8 | End-of-turn thresholds and latency | 20 min |
 
 Running behind? Steps 1 to 5 are the core — finish those and you have a working voice agent. Step 8 is dials rather than code and makes the natural take-home. And because every folder is complete, skipping ahead costs you the typing, not the workshop.
+
+Running ahead? [Step 7b](/make-it-yours/healthcare) points the same function-calling machinery at a second vertical, and is off the chain in both directions — nothing after it depends on it.
 
 Each step has **Check yourself** questions to test your understanding as you go, with the answer in an expandable block, and **Pause** markers where a live workshop regroups.
 
