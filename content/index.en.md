@@ -88,11 +88,13 @@ The agent runs on your machine. Deepgram handles the real-time speech path over 
 
 **One Region, named once.** `AWS_REGION` sets both the credentials' Region and the Bedrock endpoint URL, which have to agree. No step hardcodes a Region, so there's a single place to change and nothing to get out of sync.
 
-**Data residency is a configuration choice, not a rewrite.** `DEEPGRAM_REGION` points the speech path at the global, EU, or Australia endpoint, and the same mechanism points the workshop at a Deepgram Dedicated or self-hosted deployment. Pair an EU speech endpoint with an EU Bedrock Region when that's what the audit requires. One line moves every step together.
+**Data residency is a configuration choice, not a rewrite.** `DEEPGRAM_REGION` points the speech path at the global, EU, or Australia endpoint, and the same mechanism points the workshop at a Deepgram Dedicated or self-hosted deployment. On AWS, that self-hosted form is Amazon SageMaker. Pair an EU speech endpoint with an EU Bedrock Region when that's what the audit requires. One line moves every step together.
 
 **Graceful degradation.** Step 6's `think_settings()` guards on the presence of AWS credentials and falls back to the brokered provider without them. The person next to you whose model access never got approved can still run your file, and Step 7 continues either way.
 
 **No infrastructure to leave running.** The workshop provisions nothing in your account. The only artifact to clean up is the IAM credential you created.
+
+::alert[Step 6 puts the LLM in your account. The speech models can go there too: Flux, Nova-3, and Aura-2 are on AWS Marketplace and [deploy to Amazon SageMaker endpoints](https://developers.deepgram.com/docs/deploy-amazon-sagemaker) in your own VPC, which is the answer when audio can't leave your network at all. That's a different architecture from this workshop, not a setting in it — SageMaker's network isolation blocks the outbound LLM calls the orchestrator makes, so the Voice Agent API doesn't run there. No step in this workshop uses SageMaker; it's noted so you know the path exists.]{type="info" header="Deepgram's speech models also run in your account, on SageMaker"}
 
 ## Getting help
 

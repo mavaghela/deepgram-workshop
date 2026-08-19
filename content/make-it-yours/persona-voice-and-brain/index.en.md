@@ -299,6 +299,8 @@ Try the other half of the idea. Leave `provider` set to `open_ai` and point `end
 
 Back on the prompt side, give the agent a constraint it has to hold under pressure ("you only discuss coffee, and you politely redirect anything else"), then spend two minutes trying to talk it off-topic. Prompt injection resistance in a voice agent is the same problem as in a chat agent, except your attacker is talking out loud.
 
+::alert[Part 2 moved the brain into your AWS account. The speech half can move too: Flux, Nova-3, and Aura-2 are on AWS Marketplace and [deploy to Amazon SageMaker endpoints](https://developers.deepgram.com/docs/deploy-amazon-sagemaker) in your own VPC. That's a different architecture rather than a different setting, though — SageMaker's network isolation blocks outbound LLM calls, which is exactly why the Voice Agent API can't run there. You'd call transcription, your model, and synthesis yourself instead of configuring one socket. Nothing to do here; just know the option exists when the audio is the part that can't leave.]{type="info" header="The speech models can run in your account too"}
+
 ---
 
 Your agent has a job, a voice, and a brain running where you want it. What it still can't do is anything outside its own head.
